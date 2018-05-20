@@ -19,10 +19,6 @@
     </div>
 </div>
 @endsection
-<!-- <script type="text/javascript" src="{{ URL::asset('js/action_books.js') }}">
-   console.log("Delete5");
-</script> -->
-
 
 
 
