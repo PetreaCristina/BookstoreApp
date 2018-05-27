@@ -24,12 +24,11 @@ Route::get('/book/add', 'BooksController@getAdd')->name('getAddBook');
 Route::post('/book/add', 'BooksController@postAdd')->name('postAddBook');
 
 Route::get('/book/edit/{id}', 'BooksController@edit')->name('edit');
-Route::POST('/book/update/{id}','BooksController@update')->name('update');
+Route::PATCH('/book/update/{id}','BooksController@update')->name('update');
 Route::get('/book/list', 'BooksController@getList')->name('getListBook');
 
 
 Route::get('/book/delete/{id}', 'BooksController@delete')->name('delete');
-Route::get('/book/succesDeleteRecord','BooksController@succesDeleteRecord')->name('succesDeleteRecord');
 
 Auth::routes();
 

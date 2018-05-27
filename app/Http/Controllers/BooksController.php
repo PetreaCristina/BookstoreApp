@@ -4,6 +4,7 @@ use Intervention\Image\ImageManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Book;
+use Session;
 
 class BooksController extends Controller{
 	
@@ -54,12 +55,8 @@ class BooksController extends Controller{
 
 	public function delete($id)
 	{
-			 if(Book::deleteBook($id))
-		   return redirect()->route('succesDeleteRecord')->with('success', 'Book deleted!');
-	}
-	public function succesDeleteRecord()
-	{
-		return view('books.succesDeleteView');
+		 if(Book::deleteBook($id))
+		 return redirect()->route('getListBook')->with('success', 'Book deleted!');
 	}
 
 	public function edit($id)
@@ -69,6 +66,7 @@ class BooksController extends Controller{
 	}
 	public function update($id, Request $request)
    {
+	$book = Book::findOrFail($id);
 	   $this->validate($request, 
 	   [
 		   'title'	=> 'required',
@@ -80,13 +78,9 @@ class BooksController extends Controller{
 		   'location_download'	=> 'required',
 	   ]);
 
-	   $input = $request->all();
-	   unset($input['_token']);
-		$book=  Book::find($id);
-		foreach ($input as $key => $value) {
-	    	$book->$key = $value;
-	    }
-		$book->update($input);
+	    $input = $request->all();
+		$book->fill($input)->save();
+		//Session::flash('flash_message', 'Book successfully edit!');
         return redirect()->route('getListBook')->with('success', 'Book edit!');
    }
 
