@@ -44,7 +44,11 @@
                         <td>{{{$book->genre}}}</td>
                         <td>{{{$book->publication_year}}}</td>
                         <td>{{{$book->location_download}}}</td>
-                        <td><a href='delete/{{ $book->id }}' class="btn btn-danger btn-sm js-delete-row" data-id="{{ $book->id }}"  onclick="return confirm('Are you sure?')">Delete</a></td>
+                        <td>{{ Form::open(array('url' => '/delete/' . $book->id)) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Delete book', array('class' => 'btn-sm btn-warning')) }}
+                {{ Form::close() }}
+</td>
                         <td><a href='edit/{{ $book->id }}'class="btn-sm btn-primary" style="border: none;" data-id="{{ $book->id }}">Edit</a></td>
                       </tr>
                     </tbody>

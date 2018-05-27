@@ -28,7 +28,7 @@ Route::PATCH('/book/update/{id}','BooksController@update')->name('update');
 Route::get('/book/list', 'BooksController@getList')->name('getListBook');
 
 
-Route::get('/book/delete/{id}', 'BooksController@delete')->name('delete');
+Route::delete('/delete/{id}', 'BooksController@delete')->name('delete');
 
 Auth::routes();
 
